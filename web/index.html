@@ -10,6 +10,7 @@
         color: #eee;
       }
     </style>
+    <script src="./bash.js"></script>
   </head>
   <body>
     <textarea name="input" id="input">echo hi</textarea>
@@ -18,24 +19,23 @@
     <br />
     <pre><code id="output">(output...)</code></pre>
     <script>
-      const output = document.querySelector("#output");
-      var Module = {
-        print: (text) => (output.innerText = text + "\n"),
-        printErr: (text) => (output.innerText = text + "\n"),
-        noInitialRun: true,
-      };
-    </script>
-    <script>
       const input = document.querySelector("#input");
       const btn = document.querySelector("#run");
+      const output = document.querySelector("#output");
 
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", async () => {
+        const module = await createBash({
+          noInitialRun: true,
+          print: (text) => (output.innerText += text + "\n"),
+          printErr: (text) => (output.innerText += text + "\n"),
+        });
+
         output.innerText = "";
         const text = input.value + "\n";
-        Module.FS.writeFile("/script", text);
-        Module.callMain(["/script"]);
+
+        module.FS.writeFile("/script", text);
+        module.callMain(["/script"]);
       });
     </script>
-    <script src="./bash.js"></script>
   </body>
 </html>
