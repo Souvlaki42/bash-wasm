@@ -23,8 +23,8 @@ cd build
 emconfigure ../bash/configure --build="$(bash ../bash/support/config.guess)" --host wasm32-unknown-emscripten --cache-file=../cache.txt --without-bash-malloc
 emmake make -j8 LDFLAGS='-sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=FS,callMain'
 cd ../web
-cp ../build/bash bash.js
-cp ../build/bash.wasm .
+ln -s ../build/bash bash.js
+ln -s ../build/bash.wasm
 ```
 
 ## How to run
