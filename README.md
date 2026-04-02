@@ -24,16 +24,15 @@ emconfigure ../bash/configure --build="$(bash ../bash/support/config.guess)" --h
 
 # Now, build it like this:
 emmake make -j8 LDFLAGS='-sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=FS,callMain -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createBash'
-cd ../web
-ln -s ../build/bash bash.js
-ln -s ../build/bash.wasm
+
+ln -s ../../build/bash src/runtime/bash.js
+ln -s ../../build/bash.wasm src/runtime/bash.wasm
 ```
 
 ## How to run
 
 ```bash
-cd web
-python3 -m http.server 8080 # or any other http server and port
+npm run dev
 ```
 
 Then open `http://localhost:8080` in your browser.
