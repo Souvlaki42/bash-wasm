@@ -1,5 +1,8 @@
 import createBash from "./bash";
 
+// WARNING: Unsupported syscalls: getresgid32 and wait4
+const LOG_UNSUPPORTED_SYSCALLS = false;
+
 // Define the new web builtin
 globalThis.__bash_web_internal = async (argv) => {
   const [cmd, ...args] = argv;
@@ -23,12 +26,22 @@ globalThis.__bash_web_internal = async (argv) => {
 
 // Run a bash script using the emscripten bash build
 const runBashScript = async (src: string) => {
-  const module = await createBash({
+  const instance = await createBash({
     noInitialRun: true,
+    printErr: (text) => {
+      const lowercaseText = text.toLowerCase();
+      if (
+        !LOG_UNSUPPORTED_SYSCALLS &&
+        lowercaseText.includes("unsupported syscall")
+      )
+        return;
+      if (lowercaseText.includes("warning")) return console.warn(text);
+      console.error(text);
+    },
   });
 
-  module.FS.writeFile("/script", src + "\n");
-  module.callMain(["/script"]);
+  instance.FS.writeFile("/script", src + "\n");
+  instance.callMain(["/script"]);
 };
 
 // Grab all the bash scripts from the page
