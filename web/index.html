@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bash WASM</title>
-    <script src="./bash.js"></script>
   </head>
   <body>
     <script>
@@ -12,8 +11,12 @@
         print: (text) => console.log(text),
         printErr: (text) => console.error(text),
         noInitialRun: true,
-        onRuntimeInitialized: () => {},
+        onRuntimeInitialized: () => {
+          Module.FS.writeFile("/script", "echo hello world\n");
+          Module.callMain(["/script"]);
+        },
       };
     </script>
+    <script src="./bash.js"></script>
   </body>
 </html>
