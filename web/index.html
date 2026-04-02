@@ -10,33 +10,11 @@
         color: #eee;
       }
     </style>
+    <script type="module" src="./loader.js"></script>
   </head>
   <body>
-    <textarea name="input" id="input">echo hi</textarea>
-    <br />
-    <button id="run">Run</button>
-    <br />
-    <pre><code id="output">(output...)</code></pre>
-    <script type="module">
-      import createBash from "./bash.js";
-
-      const input = document.querySelector("#input");
-      const btn = document.querySelector("#run");
-      const output = document.querySelector("#output");
-
-      btn.addEventListener("click", async () => {
-        const module = await createBash({
-          noInitialRun: true,
-          print: (text) => (output.innerText += text + "\n"),
-          printErr: (text) => (output.innerText += text + "\n"),
-        });
-
-        output.innerText = "";
-        const text = input.value + "\n";
-
-        module.FS.writeFile("/script", text);
-        module.callMain(["/script"]);
-      });
+    <script type="text/bash">
+      echo hello there
     </script>
   </body>
 </html>
