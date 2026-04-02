@@ -1,4 +1,4 @@
-# Bash WASM
+# WASM Bash
 
 This is a proof of concept of running Bash WASM in the browser.
 
@@ -25,7 +25,7 @@ cd build
 emconfigure ../bash/configure --build="$(bash ../bash/support/config.guess)" --host wasm32-unknown-emscripten --cache-file=../cache.txt --without-bash-malloc
 
 # Now, build it like this:
-emmake make -j8 LDFLAGS='-sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=FS,callMain -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXPORT_NAME=createBash'
+emmake make -j8 LDFLAGS='-sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=FS,callMain -sMODULARIZE=1 -sEXPORT_ES6=1 -sEXIT_RUNTIME=1 -sEXPORT_NAME=createBash'
 
 ln -s ../../build/bash src/runtime/bash.js
 ln -s ../../build/bash.wasm src/runtime/bash.wasm
