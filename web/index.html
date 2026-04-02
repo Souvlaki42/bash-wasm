@@ -4,18 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bash WASM</title>
+    <style>
+      body {
+        background-color: #111;
+        color: #eee;
+      }
+    </style>
   </head>
   <body>
+    <textarea name="input" id="input">echo hi</textarea>
+    <br />
+    <button id="run">Run</button>
+    <br />
+    <pre><code id="output">(output...)</code></pre>
     <script>
+      const output = document.querySelector("#output");
       var Module = {
-        print: (text) => console.log(text),
-        printErr: (text) => console.error(text),
+        print: (text) => (output.innerText = text + "\n"),
+        printErr: (text) => (output.innerText = text + "\n"),
         noInitialRun: true,
-        onRuntimeInitialized: () => {
-          Module.FS.writeFile("/script", "echo hello world\n");
-          Module.callMain(["/script"]);
-        },
       };
+    </script>
+    <script>
+      const input = document.querySelector("#input");
+      const btn = document.querySelector("#run");
+
+      btn.addEventListener("click", () => {
+        output.innerText = "";
+        const text = input.value + "\n";
+        Module.FS.writeFile("/script", text);
+        Module.callMain(["/script"]);
+      });
     </script>
     <script src="./bash.js"></script>
   </body>
