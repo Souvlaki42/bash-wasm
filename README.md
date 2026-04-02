@@ -2,6 +2,8 @@
 
 This is a proof of concept of running Bash WASM in the browser.
 
+It is based on [this wonderful April Fools' joke](https://youtu.be/TEq-6AqMFBI).
+
 ## Prequisites
 
 - A machine with WSL2 (Windows Subsystem for Linux), MacOS or Linux
