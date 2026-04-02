@@ -34,7 +34,7 @@ cd web
 python3 -m http.server 8080 # or any other http server and port
 ```
 
-Then open `http://localhost:8000` in your browser.
+Then open `http://localhost:8080` in your browser.
 
 ## LICENSE
 
