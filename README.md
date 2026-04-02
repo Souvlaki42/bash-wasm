@@ -4,10 +4,12 @@ This is a proof of concept of running Bash WASM in the browser.
 
 It is based on [this wonderful April Fools' joke](https://youtu.be/TEq-6AqMFBI).
 
-## Prequisites
+I'm also using **Full colored light background symbol** as the favicon from [bashlogo.com](https://bashlogo.com/).
 
-- A machine with WSL2 (Windows Subsystem for Linux), MacOS or Linux
-- A recent version of [Emscripten](https://emscripten.org/)
+## Prerequisites
+
+- A machine with WSL2 (Windows Subsystem for Linux), MacOS or Linux.
+- A recent version of [Emscripten](https://emscripten.org/).
 
 ## How to build
 
