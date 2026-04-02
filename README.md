@@ -21,7 +21,7 @@ tar xf bash-5.3.tar.gz
 mkdir -p build
 cd build
 emconfigure ../bash/configure --build="$(bash ../bash/support/config.guess)" --host wasm32-unknown-emscripten --cache-file=../cache.txt --without-bash-malloc
-emmake make -j8 # or how many cpu threads you have
+emmake make -j8 LDFLAGS='-sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=FS,callMain'
 cd ../web
 cp ../build/bash bash.js
 cp ../build/bash.wasm .
