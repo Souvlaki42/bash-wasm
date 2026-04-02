@@ -10,7 +10,6 @@
         color: #eee;
       }
     </style>
-    <script src="./bash.js"></script>
   </head>
   <body>
     <textarea name="input" id="input">echo hi</textarea>
@@ -18,7 +17,9 @@
     <button id="run">Run</button>
     <br />
     <pre><code id="output">(output...)</code></pre>
-    <script>
+    <script type="module">
+      import createBash from "./bash.js";
+
       const input = document.querySelector("#input");
       const btn = document.querySelector("#run");
       const output = document.querySelector("#output");
