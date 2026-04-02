@@ -1,11 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bash WASM</title>
-  <script src="./bash.js"></script>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bash WASM</title>
+    <script src="./bash.js"></script>
+  </head>
+  <body>
+    <script>
+      var Module = {
+        print: (text) => console.log(text),
+        printErr: (text) => console.error(text),
+        noInitialRun: true,
+        onRuntimeInitialized: () => {},
+      };
+    </script>
+  </body>
 </html>
