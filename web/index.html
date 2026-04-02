@@ -13,13 +13,13 @@
     <script type="module" src="./loader.js"></script>
   </head>
   <body>
+    <pre><code id="output"></code></pre>
     <script type="text/bash">
-      for i in {1..10}; do
-        echo "i is $i"
-      done
-    </script>
-    <script type="text/bash">
-      echo hello there
+      echo this is bash lol
+      if true; then
+        web dom.write "#output" "Hello World"
+        web document.title "My new title"
+      fi
     </script>
   </body>
 </html>
