@@ -12,14 +12,15 @@ It is based on [this wonderful April Fools' joke](https://youtu.be/TEq-6AqMFBI).
 ## How to build
 
 ```bash
-# If you want to customize the bash build or use a different version, remove base-5.3/ directory and cache.txt file
+# OPTIONAL: If you want to customize the bash build or use a different version, remove base-5.3/ directory and cache.txt file.
 # Then, you can download the source code of bash 5.3 from the official https mirror, customize it and build it.
 wget https://ftp.gnu.org/gnu/bash/bash-5.3.tar.gz
 tar xf bash-5.3.tar.gz
 
+# Otherwise, start from here:
 mkdir -p build
 cd build
-emconfigure ../bash-5.3/configure --build="$(bash ../bash-5.3/support/config.guess)" --host wasm32-unknown-emscripten --cache-file=../cache.txt --without-bash-malloc
+emconfigure ../bash/configure --build="$(bash ../bash/support/config.guess)" --host wasm32-unknown-emscripten --cache-file=../cache.txt --without-bash-malloc
 emmake make -j8 # or how many cpu threads you have
 cd ../web
 cp ../build/bash bash.js
